@@ -1,0 +1,16 @@
+.card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 1rem;
+
+}
+
+.card.error-style {
+  padding: 0;
+  display: flow-root;
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

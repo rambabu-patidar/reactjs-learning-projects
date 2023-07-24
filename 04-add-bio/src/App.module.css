@@ -1,0 +1,7 @@
+.bio-container {
+  padding-top: 2rem;
+  display: grid;
+  gap: 2rem;
+  grid-auto-columns: 50%;
+  justify-content: center;
+}

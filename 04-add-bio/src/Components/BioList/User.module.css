@@ -1,0 +1,6 @@
+.user-list-item {
+  border: 2px ridge #5555556f;
+  padding: .5rem;
+  margin: 0.5rem;
+  font-weight: bold;
+}

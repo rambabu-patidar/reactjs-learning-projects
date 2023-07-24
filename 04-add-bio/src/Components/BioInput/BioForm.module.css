@@ -1,0 +1,17 @@
+.bio-form__controls div label,
+.bio-form__controls div input {
+  font: inherit;
+  font-weight: bolder;
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.bio-form__controls div input {
+  padding: 0.3rem;
+  border: 2px ridge #5555556f;
+}
+
+.bio-form__controls div input:focus-within {
+  outline: none;
+}
