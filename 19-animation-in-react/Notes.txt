@@ -1,0 +1,138 @@
+Animation in React
+
+We can animate react app with help of normal CSS and that completly fine.
+For Eg. we can use :
+  tranform, transition, animation property of standard CSS.
+
+Problems we can have with normal CSS: 
+Let's say we have a modal to be shown and removed on a button click.
+by normal css we would have done it with:
+
+show-modal
+{
+  transition: all 1s ease-out;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+hide-modal
+{
+  transition: all 1s ease-out;
+  transform: : translateY(-100%);
+  opacity: 0;
+}
+
+so by doing this we can have animation but the html element will always be there on 
+the DOM and it is not what good of accessebility reasons.
+
+
+
+normal solution: 
+render the element conditionally and put the css animation/ transition methods.
+
+problem with rendering conditionally:
+the animation we set on element will run perfectly fine when it rendered on the dom using conditions
+but the out animation will not run because the element will be removed as soon as the condition gets false.
+leading not able to have animation while it removed.
+
+THE SOLUTION IS TO USE THIRD PART MODULE/DEPENDENCY/PACKAGE
+
+REACT-TRANSITION-GROUP:
+https://reactcommunity.org/react-transition-group/
+
+1. It has a Transition component which helps to render element in dom with help of conditions and
+  we can also give it a time so that it removing and entering thing happen smoothly(not instantaneously).
+
+it manages four states : 
+entering 
+entered
+exiting
+exited
+
+
+<Transition 
+  in={condition}
+  timeout={some time in millisecond} 
+  mountOnEnter 
+  unmountOnExit>
+  onEnter = {() => {some code}}
+  onEntering = {() => {some code}}
+  onEntered = {() => {some code}}
+  onExit = {() => {some code}}
+  onExiting = {() => {some code}}
+  onExited = {() => {some code}}
+</Transition>
+
+- in attribute: show wether it should show the content wrapped in it depending on condition.
+
+- timeout attribute: how much time it should take from entering->entered and exiting->exited.
+
+
+
+Now inside the Transition component we can have a function which have acces  to "state" property which is one of four given above:
+and by these state we can manage animation on our element.
+
+- mountOnEnter attribute: put element in DOM tree by delay of timeout time when condition is true
+- unmountOnExit attribute: remove element from DOM tree by delay of timeout time when condition is false.
+
+NOTE: since there is delay to get removed from DOM tree our animation can complete.
+
+we can have different time delay for entering and exiting by providing an object to timeout function that has two key enter and exited
+for eg:
+
+const animationTiming = {
+  enter: 400,
+  exit: 1000,
+} 
+
+- onEnter attribute: This accept a callback function which is executed just before we go in entering mode.
+- onEntering attribute: This accept a callback function which is executed as we are in entering mode.
+- onEntered attribute: This accept a callback function which is executed just we entered.
+
+The same for onExit, onExiting, onExited attributes.
+
+-----------------------------------------------
+
+
+CSSTransition Component : Since we are managing the classes to be added and removed on the modal 
+                          manually with the help of state inside Transition Component.
+
+                          That can be not good.
+                          so we have another component provided by react-transition-group 
+                          CSSTransition
+
+                          The good thing about this component is that is has a "classNames" attribute which 
+                          take a general class name or trunck class name(for eg. fade-slides) which is to be applied on element which is wrapped inside the 
+                          CSSTransition component
+                          and after that depending on the state it adds some extra part in trunk of the class on wrapped element.
+
+                          like: 
+                          fade-slides-enter (applied when: just before entering state)
+                          fade-slides-enter-active (applied when: entering state)
+                          fade-slides-exit (applied when: just before exiting state)
+                          fade-slides-exit-active (applied when: exiting state)
+
+                          NOTE: The applied class on the wrapped element by us remain intact as it usually was.
+
+Now if you don't like the way CSSTransition is adding some extra text on the given trunk class name
+we do have another method:
+
+what we can do is that we can pass an object to classnames like:
+
+TTH === class name of your choice (shorthand of statement)
+
+classnames = {{
+  enter: TTH,
+  enterActive: TTH,
+  exit: TTH,
+  exitActive: TTH,
+}}
+
+but remember that you can't modify key on above object.
+
+
+
+ALTERNATIVES : 
+React Move (simple to use and you can try it)
+React Router Transition (To make animation on our routes/paths, This is also simple and can try)
+React Motion (physics based animations that looks pretty real)
