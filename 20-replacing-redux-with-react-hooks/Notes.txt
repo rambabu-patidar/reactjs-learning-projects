@@ -1,0 +1,37 @@
+So In this Module I learned to not use React Redux.
+
+It's absolutely fine to use redux and there is no harm in that.
+
+but if we want that work to be done without redux with help of only react then how we will 
+do it? That is what this module offers.
+
+Maybe we choose not to include redux in our application to reduce the bundle size while deploying that code.
+or we don't like redux or anything may be the reason.
+Let's do it now:
+
+APPROACH NO: 1
+
+Using the pure context features of the react.
+But the context api is not a good api if the changes in the app are too frequent.
+it is not ready acc to the member who created context api.
+so context is good for the changes that occures very less freqeuently and managing state globally for eg authentication, or changing theme.
+
+so we have to have another method/approach 
+
+APPROACH NO: 2
+
+This approach will manage the global state just with the help of just react and javascript (and not using context)
+
+The idea is to create a custom hook that works very similar to how redux works.
+The main concept is that when we use custom hook inside any component and if that custom hook is
+also dependent on a hook that triggers the component renders (for eg. useState) then the component
+using the custom hook will also be re-render.
+
+For most of the times we use custom hooks so that we have separate data for the component which calls it
+but in this case we are interested to expose the same global state to all the component that's why 
+we declare the globalState outside the custom hook.
+similar to redux we make globalListeners and actions which are binded in a way that we can have same
+functionality as redux or context.
+
+To understand it fully se the hook-store folder.
+it's a little advance concept so I also need some practise and revisits to grasp this.
