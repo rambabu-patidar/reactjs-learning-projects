@@ -1,0 +1,46 @@
+- What is typescript? 
+    TypeScript is a syntactic superset of JavaScript which adds static typing.
+
+    This basically means that TypeScript adds syntax on top of JavaScript, allowing developers to add types.
+    TypeScript being a "Syntactic Superset" means that it shares the same base syntax as JavaScript, but adds something to it.
+    JavaScript is a loosely typed language but TypeScript is strict typed language.
+    TypeScript uses compile time type checking. Which means it checks if the specified types match before running the code, not while running the code.
+
+- How to run TypeScript in computer? 
+    The best way to install TypeScript in computer is to install it in local project on which we are working.
+    Simply run : npm install typescript
+    NOTE: you must have node.js installed in computer and you must be in the same directory in which you want to run TS and you should have package.json file in the folder (if you don't have run "npm init --yes" command)
+
+    To install it globally in computer
+    Run : npm install -g typescript
+
+    Now we want to have a typescript configuration file in our project to define which file should run automatically
+    by "npx tsc" command
+    But we can run a specific file using slightly modified command:
+    "npx tsc <fileName>"
+
+    when running the TypeScript file we get an JavaScript file automatically so now we can include that automatically generated JavaScript file into our html page so that 
+    browser is served with JavaScript which it knows and we can work on TypeScript file so we are sucured with errors.
+
+
+GO In the basics.ts  file now.
+Hope You explored the given file above.
+
+- How to work in React with TypeScript
+    So lets create React project using typescript using the command below
+    npx create-react-app <app-name> --template typescript
+
+    for more: https://create-react-app.dev/docs/adding-typescript/
+
+    Everything is similar to react except the js/jsx files are now tsx file.
+    and in package.json file we do have typescript as dependency.
+    But we do have couple of @types/... packages. what are these?
+    Basically these are the packages which acts as a bridge between the vanilla javascript library and typescript projects.
+    for eg. react and react-dom are the two library which are written in only vanilla javascript so to have good intelligence and ide support features 
+    and autocompletion we have this typescript annoted library.
+    Its not necessary that every library should have its eqvivalent @type/... library because some 
+    library are written in typescript only.
+
+    Start development server using "npm start" same command.
+
+    Happy hacking with React-TypeScript
