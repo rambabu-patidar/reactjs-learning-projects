@@ -5,6 +5,7 @@ const ExpenseForm = (props) => {
 	const [enteredTitle, setEnteredTitle] = useState("");
 	const [enteredAmount, setEnteredAmount] = useState("");
 	const [enteredDate, setEnteredDate] = useState("");
+	const [error, setError] = useState(false);
 
 	// const [userInput, setUserInput] = useState({
 	// 	enteredTitle: "",
@@ -49,7 +50,16 @@ const ExpenseForm = (props) => {
 
 	const submitHandler = (event) => {
 		event.preventDefault(); // prevent the page reload.
+		setError(false);
 
+		if (
+			enteredTitle.trim().length <= 0 ||
+			enteredAmount < 0 ||
+			enteredDate.trim().length <= 0
+		) {
+			setError(true);
+			return;
+		}
 		const expenseData = {
 			title: enteredTitle,
 			amount: enteredAmount,
@@ -61,6 +71,8 @@ const ExpenseForm = (props) => {
 		setEnteredAmount("");
 		setEnteredDate("");
 	};
+
+	const errorElement = <p className="error">Can't submit empty form!</p>;
 
 	return (
 		<form onSubmit={submitHandler}>
@@ -94,6 +106,7 @@ const ExpenseForm = (props) => {
 					/>
 				</div>
 			</div>
+			{error && errorElement}
 			<div className="new-expense__actions">
 				<button type="submit">Add Expense</button>
 			</div>
